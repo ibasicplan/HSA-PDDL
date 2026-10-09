@@ -1,0 +1,19 @@
+(define (problem rover-test-1-generated)
+  (:domain rover)
+  (:objects
+    r0 - rover
+    w0 w1 - waypoint
+    l0 - lander
+    s0 - store
+  )
+  (:init
+    (at r0 w0)
+    (available r0)
+    (visible w0 w1)
+    (can_traverse r0 w0 w1)
+    (store_of s0 r0)
+    (empty s0)
+    (at_lander l0 w1)
+  )
+  (:goal (and (at r0 w1)))
+)

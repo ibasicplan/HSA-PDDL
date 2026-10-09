@@ -1,0 +1,12 @@
+OBJECT|plane1|aircraft|Plane plane1
+OBJECT|person1|person|Person person1
+OBJECT|city0|city|city0
+OBJECT|city1|city|city1
+OBJECT|fl0|flevel|fuel level fl0
+OBJECT|fl1|flevel|fuel level fl1
+FACT|F1|INIT|POS|located at city|plane1,city0|Plane plane1 is at city0
+FACT|F2|INIT|POS|located at city|person1,city0|Person person1 is at city0
+FACT|F3|INIT|POS|fuel level|plane1,fl1|Plane plane1 has fuel level fl1
+FACT|F4|INIT|POS|next fuel level|fl1,fl0|Fuel level fl1 is next to fl0
+FACT|F5|GOAL|POS|located at city|person1,city1|person1 to be at city1
+END_EIR

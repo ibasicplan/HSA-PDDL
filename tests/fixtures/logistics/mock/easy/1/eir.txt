@@ -1,0 +1,41 @@
+OBJECT|a0|airplane|a0 is an airplane
+OBJECT|c0|city|c0 is a city
+OBJECT|c1|city|c1 is a city
+OBJECT|c2|city|c2 is a city
+OBJECT|l0-0|location|l0-0 is a location
+OBJECT|l1-0|location|l1-0 is a location
+OBJECT|l2-0|location|l2-0 is a location
+OBJECT|p0|object|p0 is an object
+OBJECT|t0|truck|t0 is a truck
+OBJECT|t1|truck|t1 is a truck
+OBJECT|t2|truck|t2 is a truck
+OBJECT|t3|truck|t3 is a truck
+OBJECT|t4|truck|t4 is a truck
+FACT|F1|INIT|POS|airplane classification|a0|a0 is an airplane
+FACT|F2|INIT|POS|located at a location|a0,l2-0|a0 is at l2-0
+FACT|F3|INIT|POS|city classification|c0|c0 is a city
+FACT|F4|INIT|POS|city classification|c1|c1 is a city
+FACT|F5|INIT|POS|city classification|c2|c2 is a city
+FACT|F6|INIT|POS|location classification|l0-0|l0-0 is a location
+FACT|F7|INIT|POS|airport classification|l0-0|l0-0 is an airport
+FACT|F8|INIT|POS|location is within a city|l0-0,c0|l0-0 is in the city c0
+FACT|F9|INIT|POS|location classification|l1-0|l1-0 is a location
+FACT|F10|INIT|POS|airport classification|l1-0|l1-0 is an airport
+FACT|F11|INIT|POS|location is within a city|l1-0,c1|l1-0 is in the city c1
+FACT|F12|INIT|POS|location classification|l2-0|l2-0 is a location
+FACT|F13|INIT|POS|airport classification|l2-0|l2-0 is an airport
+FACT|F14|INIT|POS|location is within a city|l2-0,c2|l2-0 is in the city c2
+FACT|F15|INIT|POS|object classification|p0|p0 is an object
+FACT|F16|INIT|POS|located at a location|p0,l1-0|p0 is at l1-0
+FACT|F17|INIT|POS|truck classification|t0|t0 is a truck
+FACT|F18|INIT|POS|located at a location|t0,l0-0|t0 is at l0-0
+FACT|F19|INIT|POS|truck classification|t1|t1 is a truck
+FACT|F20|INIT|POS|located at a location|t1,l1-0|t1 is at l1-0
+FACT|F21|INIT|POS|truck classification|t2|t2 is a truck
+FACT|F22|INIT|POS|located at a location|t2,l2-0|t2 is at l2-0
+FACT|F23|INIT|POS|truck classification|t3|t3 is a truck
+FACT|F24|INIT|POS|located at a location|t3,l2-0|t3 is at l2-0
+FACT|F25|INIT|POS|truck classification|t4|t4 is a truck
+FACT|F26|INIT|POS|located at a location|t4,l1-0|t4 is at l1-0
+FACT|F27|GOAL|POS|located at a location|p0,l2-0|p0 is at l2-0
+END_EIR

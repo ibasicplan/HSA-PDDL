@@ -1,0 +1,82 @@
+OBJECT|l0|lqubit|l0 is declared as lqubit
+OBJECT|l1|lqubit|l1 is declared as lqubit
+OBJECT|l2|lqubit|l2 is declared as lqubit
+OBJECT|p0|pqubit|p0 is declared as pqubit
+OBJECT|p1|pqubit|p1 is declared as pqubit
+OBJECT|p2|pqubit|p2 is declared as pqubit
+OBJECT|p3|pqubit|p3 is declared as pqubit
+OBJECT|p4|pqubit|p4 is declared as pqubit
+OBJECT|p5|pqubit|p5 is declared as pqubit
+OBJECT|p6|pqubit|p6 is declared as pqubit
+OBJECT|p7|pqubit|p7 is declared as pqubit
+OBJECT|p8|pqubit|p8 is declared as pqubit
+OBJECT|p9|pqubit|p9 is declared as pqubit
+OBJECT|p10|pqubit|p10 is declared as pqubit
+OBJECT|p11|pqubit|p11 is declared as pqubit
+OBJECT|p12|pqubit|p12 is declared as pqubit
+OBJECT|p13|pqubit|p13 is declared as pqubit
+OBJECT|d2|depth|d2 is declared as depth
+OBJECT|d4|depth|d4 is declared as depth
+OBJECT|d5|depth|d5 is declared as depth
+OBJECT|d6|depth|d6 is declared as depth
+OBJECT|d7|depth|d7 is declared as depth
+OBJECT|d8|depth|d8 is declared as depth
+FACT|F1|INIT|POS|current depth|d0|fixture evidence for current depth
+FACT|F2|INIT|POS|connected to|p1,p0|fixture evidence for connected to
+FACT|F3|INIT|POS|connected to|p1,p2|fixture evidence for connected to
+FACT|F4|INIT|POS|connected to|p2,p3|fixture evidence for connected to
+FACT|F5|INIT|POS|connected to|p4,p3|fixture evidence for connected to
+FACT|F6|INIT|POS|connected to|p4,p10|fixture evidence for connected to
+FACT|F7|INIT|POS|connected to|p5,p4|fixture evidence for connected to
+FACT|F8|INIT|POS|connected to|p5,p6|fixture evidence for connected to
+FACT|F9|INIT|POS|connected to|p5,p9|fixture evidence for connected to
+FACT|F10|INIT|POS|connected to|p6,p8|fixture evidence for connected to
+FACT|F11|INIT|POS|connected to|p7,p8|fixture evidence for connected to
+FACT|F12|INIT|POS|connected to|p9,p8|fixture evidence for connected to
+FACT|F13|INIT|POS|connected to|p9,p10|fixture evidence for connected to
+FACT|F14|INIT|POS|connected to|p11,p3|fixture evidence for connected to
+FACT|F15|INIT|POS|connected to|p11,p10|fixture evidence for connected to
+FACT|F16|INIT|POS|connected to|p11,p12|fixture evidence for connected to
+FACT|F17|INIT|POS|connected to|p12,p2|fixture evidence for connected to
+FACT|F18|INIT|POS|connected to|p13,p1|fixture evidence for connected to
+FACT|F19|INIT|POS|connected to|p13,p12|fixture evidence for connected to
+FACT|F20|INIT|POS|connected to|p0,p1|fixture evidence for connected to
+FACT|F21|INIT|POS|connected to|p2,p1|fixture evidence for connected to
+FACT|F22|INIT|POS|connected to|p3,p2|fixture evidence for connected to
+FACT|F23|INIT|POS|connected to|p3,p4|fixture evidence for connected to
+FACT|F24|INIT|POS|connected to|p10,p4|fixture evidence for connected to
+FACT|F25|INIT|POS|connected to|p4,p5|fixture evidence for connected to
+FACT|F26|INIT|POS|connected to|p6,p5|fixture evidence for connected to
+FACT|F27|INIT|POS|connected to|p9,p5|fixture evidence for connected to
+FACT|F28|INIT|POS|connected to|p8,p6|fixture evidence for connected to
+FACT|F29|INIT|POS|connected to|p8,p7|fixture evidence for connected to
+FACT|F30|INIT|POS|connected to|p8,p9|fixture evidence for connected to
+FACT|F31|INIT|POS|connected to|p10,p9|fixture evidence for connected to
+FACT|F32|INIT|POS|connected to|p3,p11|fixture evidence for connected to
+FACT|F33|INIT|POS|connected to|p10,p11|fixture evidence for connected to
+FACT|F34|INIT|POS|connected to|p12,p11|fixture evidence for connected to
+FACT|F35|INIT|POS|connected to|p2,p12|fixture evidence for connected to
+FACT|F36|INIT|POS|connected to|p1,p13|fixture evidence for connected to
+FACT|F37|INIT|POS|connected to|p12,p13|fixture evidence for connected to
+FACT|F38|INIT|POS|next depth after|d0,d2|fixture evidence for next depth after
+FACT|F39|INIT|POS|next depth after|d2,d4|fixture evidence for next depth after
+FACT|F40|INIT|POS|next depth after|d4,d5|fixture evidence for next depth after
+FACT|F41|INIT|POS|next depth after|d5,d6|fixture evidence for next depth after
+FACT|F42|INIT|POS|next depth after|d6,d7|fixture evidence for next depth after
+FACT|F43|INIT|POS|next depth after|d7,d8|fixture evidence for next depth after
+FACT|F44|INIT|POS|required cnot pending; not reachable from|l2,l1,d2|fixture evidence for required cnot pending; not reachable from
+FACT|F45|INIT|POS|required cnot pending; not reachable from|l0,l1,d4|fixture evidence for required cnot pending; not reachable from
+FACT|F46|INIT|POS|required cnot pending; not reachable from|l2,l0,d5|fixture evidence for required cnot pending; not reachable from
+FACT|F47|INIT|POS|required cnot pending; not reachable from|l2,l1,d6|fixture evidence for required cnot pending; not reachable from
+FACT|F48|INIT|POS|required cnot pending; not reachable from|l2,l0,d7|fixture evidence for required cnot pending; not reachable from
+FACT|F49|INIT|POS|required cnot pending; not reachable from|l0,l1,d8|fixture evidence for required cnot pending; not reachable from
+FACT|F50|GOAL|POS|occupied logical qubit|l0|fixture evidence for occupied logical qubit
+FACT|F51|GOAL|POS|occupied logical qubit|l1|fixture evidence for occupied logical qubit
+FACT|F52|GOAL|POS|occupied logical qubit|l2|fixture evidence for occupied logical qubit
+FACT|F53|GOAL|NEG|required cnot pending; not reachable from|l2,l1,d2|fixture evidence for required cnot pending; not reachable from
+FACT|F54|GOAL|NEG|required cnot pending; not reachable from|l0,l1,d4|fixture evidence for required cnot pending; not reachable from
+FACT|F55|GOAL|NEG|required cnot pending; not reachable from|l2,l0,d5|fixture evidence for required cnot pending; not reachable from
+FACT|F56|GOAL|NEG|required cnot pending; not reachable from|l2,l1,d6|fixture evidence for required cnot pending; not reachable from
+FACT|F57|GOAL|NEG|required cnot pending; not reachable from|l2,l0,d7|fixture evidence for required cnot pending; not reachable from
+FACT|F58|GOAL|NEG|required cnot pending; not reachable from|l0,l1,d8|fixture evidence for required cnot pending; not reachable from
+END_EIR

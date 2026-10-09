@@ -1,0 +1,13 @@
+OBJECT|a|unknown|object a is mentioned in the problem
+OBJECT|b|unknown|object b is mentioned in the problem
+OBJECT|c|unknown|object c is mentioned in the problem
+OBJECT|d|unknown|object d is mentioned in the problem
+FACT|F1|INIT|POS|global harmony holds||harmony
+FACT|F2|INIT|POS|province state|a|province object a
+FACT|F3|INIT|POS|province state|d|province object d
+FACT|F4|INIT|POS|planet state|b|planet object b
+FACT|F5|INIT|POS|planet state|c|planet object c
+FACT|F6|INIT|POS|craves|a,b|object a craves object b
+FACT|F7|INIT|POS|craves|d,c|object d craves object c
+FACT|F8|GOAL|POS|craves|c,a|object c craves object a
+END_EIR

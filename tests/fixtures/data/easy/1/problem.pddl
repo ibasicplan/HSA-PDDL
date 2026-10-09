@@ -1,0 +1,20 @@
+(define (problem zeno-fixture-1)
+  (:domain zeno-travel)
+  (:objects
+    plane1 - aircraft
+    person1 - person
+    city0 city1 - city
+    fl0 fl1 - flevel
+  )
+  (:init
+    (at plane1 city0)
+    (at person1 city0)
+    (fuel-level plane1 fl1)
+    (next fl0 fl1)
+  )
+  (:goal
+    (and
+      (at person1 city1)
+    )
+  )
+)

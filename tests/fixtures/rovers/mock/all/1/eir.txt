@@ -1,0 +1,14 @@
+OBJECT|r0|rover|r0 is declared as a rover
+OBJECT|w0|waypoint|w0 is declared as a waypoint
+OBJECT|w1|waypoint|w1 is declared as a waypoint
+OBJECT|l0|lander|l0 is declared as a lander
+OBJECT|s0|store|s0 is declared as a store
+FACT|F1|INIT|POS|located at|r0,w0|r0 is at w0
+FACT|F2|INIT|POS|rover available|r0|r0 is available
+FACT|F3|INIT|POS|visible|w0,w1|w0 is visible from w1
+FACT|F4|INIT|POS|can traverse|r0,w0,w1|r0 can traverse from w0 to w1
+FACT|F5|INIT|POS|store of|s0,r0|s0 is a store of r0
+FACT|F6|INIT|POS|store is empty|s0|s0 is empty
+FACT|F7|INIT|POS|lander at|l0,w1|l0 is at w1
+FACT|F8|GOAL|POS|located at|r0,w1|r0 is at w1
+END_EIR
