@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "domain": "mystery-4ops",
+  "offline": true,
+  "provenance": {
+    "construction": "manually derived from the supplied Mystery 4-operator STRIPS domain and domain NL",
+    "runtime_api_required": false,
+    "reference_problem_used": false
+  },
+  "eir_coverage": {
+    "enabled": true,
+    "strict_object_inventory": true,
+    "strict_fact_statement_counts": true,
+    "require_untyped_classification_facts": false,
+    "reject_extra_classification_facts": false,
+    "source": "problem_nl_only",
+    "reference_pddl_used": false
+  },
+  "direct_pddl_instructions": [
+    "This is an untyped STRIPS domain. Declare every entity as an untyped object name and use only province/1, planet/1, harmony/0, pain/1, and craves/2.",
+    "province, planet, and pain are dynamic unary state facts, not PDDL object types. Preserve them exactly in INIT or GOAL when stated.",
+    "harmony is a zero-arity fact and must be rendered exactly as (harmony), with no object argument.",
+    "Use (craves CRAVER DESIRED-ENTITY): the first argument is the entity that craves and the second is what it craves. Never reverse these roles.",
+    "The English labels are benchmark symbols whose meanings are defined by Domain NL. Do not replace them with ordinary-language or standard BlocksWorld predicates."
+  ],
+  "relations": {
+    "province_state": {
+      "description": "an entity currently having the benchmark state called province",
+      "aliases": ["province", "is a province", "province state", "province object"],
+      "patterns": ["\\bprovince\\b"],
+      "predicates": ["province"]
+    },
+    "planet_state": {
+      "description": "an entity currently having the benchmark state called planet",
+      "aliases": ["planet", "is a planet", "planet state", "planet object"],
+      "patterns": ["\\bplanet\\b"],
+      "predicates": ["planet"]
+    },
+    "global_harmony": {
+      "description": "the zero-argument global condition called harmony currently holding",
+      "aliases": ["harmony", "global harmony", "harmony holds"],
+      "patterns": ["\\bharmony\\b"],
+      "predicates": ["harmony"]
+    },
+    "pain_state": {
+      "description": "an entity currently having the benchmark state called pain",
+      "aliases": ["pain", "in pain", "pain state"],
+      "patterns": ["\\bpain\\b"],
+      "predicates": ["pain"]
+    },
+    "craving_relation": {
+      "description": "one entity craving another entity, ordered as craver then desired entity",
+      "aliases": ["craves", "crave", "craving", "desires"],
+      "patterns": ["\\bcrav(?:e|es|ing)\\b", "\\bdesir(?:e|es|ing)\\b"],
+      "predicates": [
+        {
+          "name": "craves",
+          "argument_permutation": [0, 1],
+          "argument_roles": ["craver", "desired_entity"],
+          "direct_pddl_instruction": "Emit craves(X,Y) when X craves Y; keep X in slot 1 and Y in slot 2."
+        }
+      ]
+    }
+  }
+}

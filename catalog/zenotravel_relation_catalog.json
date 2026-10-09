@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.1",
+  "domain": "zenotravel",
+  "offline": true,
+  "provenance": {
+    "construction": "one-time offline construction followed by manual validation",
+    "runtime_api_required": false
+  },
+  "relations": {
+    "location": {
+      "description": "the position of a person or aircraft at a city",
+      "aliases": [
+        "at",
+        "located at",
+        "positioned at",
+        "is at a city",
+        "location relation"
+      ],
+      "patterns": [
+        "\\b(at|located|positioned)\\b.*\\b(city|location)\\b",
+        "\\b(person|aircraft|plane)\\b.*\\bat\\b"
+      ],
+      "predicates": ["at"]
+    },
+    "containment": {
+      "description": "a person being inside or aboard an aircraft",
+      "aliases": [
+        "in",
+        "inside aircraft",
+        "in the plane",
+        "aboard",
+        "on board",
+        "containment relation"
+      ],
+      "patterns": [
+        "\\b(in|inside|aboard)\\b.*\\b(aircraft|plane)\\b",
+        "\\bon board\\b"
+      ],
+      "predicates": ["in"]
+    },
+    "resource": {
+      "description": "the discrete fuel state or fuel level of an aircraft",
+      "aliases": [
+        "fuel level",
+        "fuel state",
+        "has fuel",
+        "aircraft fuel",
+        "resource relation"
+      ],
+      "patterns": ["\\bfuel\\b.*\\b(level|state|fl[0-9]+)\\b"],
+      "predicates": ["fuel-level"]
+    },
+    "ordering": {
+      "description": "the successor ordering between two adjacent fuel levels",
+      "aliases": [
+        "next",
+        "next fuel level",
+        "successor",
+        "adjacent level",
+        "fuel transition",
+        "ordering relation"
+      ],
+      "patterns": [
+        "\\b(next|successor|adjacent)\\b.*\\b(fuel|level|fl[0-9]+)\\b",
+        "\\bfuel transition\\b"
+      ],
+      "predicates": [
+        {
+          "name": "next",
+          "argument_permutation": [1, 0],
+          "argument_roles": ["lower_or_predecessor_level", "higher_or_successor_level"],
+          "direct_pddl_instruction": "For the dataset sentence 'fuel level A is next to fuel level B', A is the higher/successor level and B is the lower/predecessor level; emit (next B A), not (next A B)."
+        }
+      ]
+    }
+  }
+}

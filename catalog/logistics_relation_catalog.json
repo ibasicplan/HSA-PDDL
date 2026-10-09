@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "domain": "logistics-strips",
+  "offline": true,
+  "provenance": {
+    "construction": "manually derived from the supplied Logistics STRIPS domain and domain NL",
+    "runtime_api_required": false,
+    "reference_problem_used": false
+  },
+  "eir_coverage": {
+    "enabled": true,
+    "strict_object_inventory": true,
+    "strict_fact_statement_counts": true,
+    "require_untyped_classification_facts": true,
+    "reject_extra_classification_facts": true,
+    "source": "problem_nl_only",
+    "reference_pddl_used": false
+  },
+  "direct_pddl_instructions": [
+    "This is an untyped STRIPS domain. Declare every problem object as an untyped name in :objects; never emit '- truck', '- airplane', '- location', '- city', '- airport', '- obj', or any other typed-object syntax.",
+    "Entity categories are ordinary INIT predicates, not PDDL types. Preserve every explicit OBJ, TRUCK, LOCATION, AIRPLANE, CITY, and AIRPORT fact.",
+    "Use (in-city LOCATION CITY) for location-to-city membership, (in CARGO VEHICLE) for loaded cargo, and (at ENTITY LOCATION) for position. Preserve these argument roles exactly."
+  ],
+  "relations": {
+    "transportable_object_class": {
+      "description": "an entity being declared as a transportable object or cargo item",
+      "aliases": ["is an object", "object classification", "transportable object", "cargo", "package"],
+      "patterns": ["\\b(is|declared|classified)\\b.*\\b(object|cargo|package)\\b", "\\btransportable object\\b"],
+      "classification_phrases": ["object"],
+      "predicates": ["obj"]
+    },
+    "truck_class": {
+      "description": "an entity being declared as a truck",
+      "aliases": ["is a truck", "truck classification", "truck vehicle"],
+      "patterns": ["\\b(is|declared|classified)\\b.*\\btruck\\b", "\\btruck classification\\b"],
+      "classification_phrases": ["truck"],
+      "predicates": ["truck"]
+    },
+    "location_class": {
+      "description": "an entity being declared as a location",
+      "aliases": ["is a location", "location classification", "place"],
+      "patterns": ["\\b(is|declared|classified)\\b.*\\blocation\\b", "\\blocation classification\\b"],
+      "classification_phrases": ["location"],
+      "predicates": ["location"]
+    },
+    "airplane_class": {
+      "description": "an entity being declared as an airplane",
+      "aliases": ["is an airplane", "airplane classification", "aircraft"],
+      "patterns": ["\\b(is|declared|classified)\\b.*\\b(airplane|aircraft)\\b", "\\bairplane classification\\b"],
+      "classification_phrases": ["airplane", "aircraft"],
+      "predicates": ["airplane"]
+    },
+    "city_class": {
+      "description": "an entity being declared as a city",
+      "aliases": ["is a city", "city classification"],
+      "patterns": ["\\b(is|declared|classified)\\b.*\\bcity\\b", "\\bcity classification\\b"],
+      "classification_phrases": ["city"],
+      "predicates": ["city"]
+    },
+    "airport_class": {
+      "description": "a location being declared as an airport",
+      "aliases": ["is an airport", "airport classification", "airport location"],
+      "patterns": ["\\b(is|declared|classified)\\b.*\\bairport\\b", "\\bairport classification\\b"],
+      "classification_phrases": ["airport"],
+      "predicates": ["airport"]
+    },
+    "position": {
+      "description": "an object, truck, or airplane being positioned at a location",
+      "aliases": ["at", "located at", "positioned at", "current location"],
+      "patterns": ["\\b(at|located|positioned)\\b.*\\b(location|airport|l[0-9])\\b", "\\bposition relation\\b"],
+      "predicates": ["at"]
+    },
+    "vehicle_containment": {
+      "description": "a transportable object being loaded inside a truck or airplane",
+      "aliases": ["in", "inside vehicle", "loaded in", "inside truck", "inside airplane", "containment"],
+      "patterns": ["\\b(in|inside|loaded)\\b.*\\b(truck|airplane|vehicle)\\b", "\\bvehicle containment\\b"],
+      "predicates": ["in"]
+    },
+    "city_membership": {
+      "description": "a location belonging to or being within a city",
+      "aliases": ["in the city", "within city", "belongs to city", "city membership", "in-city"],
+      "patterns": ["\\b(in|within|belongs)\\b.*\\bcity\\b", "\\bcity membership\\b", "\\bin-city\\b"],
+      "predicates": ["in-city"]
+    }
+  }
+}

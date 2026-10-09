@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "domain": "Quantum",
+  "offline": true,
+  "provenance": {
+    "construction": "manually derived from the user-supplied Quantum typed PDDL domain and Domain NL",
+    "runtime_api_required": false,
+    "reference_problem_used": false
+  },
+  "eir_coverage": {
+    "enabled": true,
+    "strict_object_inventory": true,
+    "strict_fact_statement_counts": true,
+    "require_untyped_classification_facts": false,
+    "reject_extra_classification_facts": false,
+    "source": "problem_nl_only",
+    "reference_pddl_used": false
+  },
+  "eir_instructions": [
+    "This is a typed domain. Preserve exact problem object names and exact types pqubit, lqubit, and depth. The fixed Domain PDDL constant d0 is not a problem OBJECT declaration; do not emit OBJECT|d0, but d0 may appear as a FACT argument.",
+    "IMPORTANT lexicalized-negation rule: the benchmark phrase 'L1 is not reachable from L2 in direction D' denotes a pending required CNOT and corresponds to a POSITIVE required-CNOT fact in INIT. Do not mark it NEG merely because the English phrase contains 'not'.",
+    "In GOAL, an outer phrase 'it is not the case that L1 is not reachable from L2 in direction D' means the pending required-CNOT fact must be false, so emit that required-CNOT FACT with NEG polarity.",
+    "If the GOAL says 'it is not the case that' followed by a comma-separated list of not-reachable requirements, the outer negation applies to every listed required-CNOT item; emit one NEG GOAL FACT for each item.",
+    "Treat connected(P1,P2), mapped(L,P), and next-depth(D1,D2) as ordered relations. Never assume symmetry or reverse argument roles unless the input explicitly states the reverse fact.",
+    "Object type declarations are metadata, not state facts: 'There are N objects that are a lqubit/pqubit/depth' creates OBJECT lines but does not create occupied, initialized, mapped, current-depth, or other state FACTs."
+  ],
+  "direct_pddl_instructions": [
+    "This is a typed PDDL problem for domain Quantum. Preserve exact problem object names and declare them only with the exact types pqubit, lqubit, and depth.",
+    "d0 is a fixed domain constant of type depth declared in Domain PDDL. It may be used in facts but MUST NOT be redeclared in the problem :objects section.",
+    "The English phrase 'L1 is not reachable from L2 in direction D' is the benchmark description of the POSITIVE predicate (rcnot L1 L2 D), not a PDDL negation.",
+    "The goal phrase 'it is not the case that L1 is not reachable from L2 in direction D' must be rendered as (not (rcnot L1 L2 D)). If one outer negation introduces a comma-separated list, negate every listed rcnot goal.",
+    "Use only occupied_pqubit/1, initialized/1, occupied_lqubit/1, mapped/2, connected/2, rcnot/3, current_depth/1, and next_depth/2 from the fixed schema.",
+    "Preserve every explicitly stated directed connected edge. Do not infer an unstated reverse connected edge.",
+    "Use mapped(LOGICAL,PHYSICAL), rcnot(CONTROL_LOGICAL,TARGET_LOGICAL,DEPTH), current_depth(DEPTH), and next_depth(CURRENT,NEXT) with exactly these argument roles."
+  ],
+  "relations": {
+    "physical_qubit_occupied": {
+      "description": "a physical qubit currently being occupied",
+      "aliases": ["occupied pqubit", "occupied physical qubit", "pqubit is occupied", "physical qubit occupancy"],
+      "patterns": ["\\boccupied\\s+(?:pqubit|physical\\s+qubit)\\b", "\\bpqubit\\b.*\\boccupied\\b"],
+      "predicates": [
+        {
+          "name": "occupied_pqubit",
+          "argument_permutation": [0],
+          "argument_roles": ["physical_qubit"],
+          "direct_pddl_instruction": "Emit occupied_pqubit(P) when physical qubit P is explicitly occupied."
+        }
+      ]
+    },
+    "physical_qubit_initialized": {
+      "description": "a physical qubit having been initialized",
+      "aliases": ["initialized", "pqubit initialized", "physical qubit initialized"],
+      "patterns": ["\\binitiali[sz]ed\\b"],
+      "predicates": [
+        {
+          "name": "initialized",
+          "argument_permutation": [0],
+          "argument_roles": ["physical_qubit"],
+          "direct_pddl_instruction": "Emit initialized(P) only when P is explicitly initialized."
+        }
+      ]
+    },
+    "logical_qubit_occupied": {
+      "description": "a logical qubit currently being occupied or mapped into use",
+      "aliases": ["occupied logical qubit", "occupied lqubit", "lqubit occupied"],
+      "patterns": ["\\boccupied\\s+(?:logical\\s+qubit|lqubit)\\b", "\\blqubit\\b.*\\boccupied\\b"],
+      "predicates": [
+        {
+          "name": "occupied_lqubit",
+          "argument_permutation": [0],
+          "argument_roles": ["logical_qubit"],
+          "direct_pddl_instruction": "Emit occupied_lqubit(L) when logical qubit L is explicitly occupied."
+        }
+      ]
+    },
+    "logical_to_physical_mapping": {
+      "description": "a logical qubit being mapped to a physical qubit",
+      "aliases": ["mapped to", "logical qubit mapping", "mapped logical qubit", "mapping"],
+      "patterns": ["\\bmapped\\s+to\\b", "\\blogical\\s+qubit\\s+mapping\\b"],
+      "predicates": [
+        {
+          "name": "mapped",
+          "argument_permutation": [0, 1],
+          "argument_roles": ["logical_qubit", "physical_qubit"],
+          "direct_pddl_instruction": "Emit mapped(L,P) with logical qubit L first and physical qubit P second."
+        }
+      ]
+    },
+    "physical_connectivity": {
+      "description": "a directed connectivity edge from one physical qubit to another physical qubit",
+      "aliases": ["connected to", "physical connectivity", "connectivity edge"],
+      "patterns": ["\\bconnected\\s+to\\b", "\\bconnectivity\\b"],
+      "predicates": [
+        {
+          "name": "connected",
+          "argument_permutation": [0, 1],
+          "argument_roles": ["source_physical_qubit", "destination_physical_qubit"],
+          "direct_pddl_instruction": "Emit connected(P1,P2) in the stated direction; do not add or reverse edges."
+        }
+      ]
+    },
+    "required_cnot_pending": {
+      "description": "a required CNOT between an ordered pair of logical qubits that remains pending at a specific depth",
+      "aliases": ["not reachable from", "required cnot", "pending cnot", "cnot requirement", "not reachable in direction"],
+      "patterns": ["\\bnot\\s+reachable\\s+from\\b", "\\brequired\\s+cnot\\b", "\\bpending\\s+cnot\\b"],
+      "predicates": [
+        {
+          "name": "rcnot",
+          "argument_permutation": [0, 1, 2],
+          "argument_roles": ["control_logical_qubit", "target_logical_qubit", "depth"],
+          "direct_pddl_instruction": "Emit rcnot(L1,L2,D) for the lexical benchmark statement 'L1 is not reachable from L2 in direction D'; keep L1, L2, D in that order."
+        }
+      ]
+    },
+    "current_circuit_depth": {
+      "description": "the circuit currently being at a specific depth",
+      "aliases": ["current depth", "current circuit depth", "depth is current"],
+      "patterns": ["\\bcurrent\\s+depth\\b"],
+      "predicates": [
+        {
+          "name": "current_depth",
+          "argument_permutation": [0],
+          "argument_roles": ["depth"],
+          "direct_pddl_instruction": "Emit current_depth(D) for the explicitly stated current depth."
+        }
+      ]
+    },
+    "depth_successor": {
+      "description": "one circuit depth being immediately followed by another depth",
+      "aliases": ["next depth after", "next depth", "depth successor", "followed by depth"],
+      "patterns": ["\\bnext\\s+depth\\s+after\\b", "\\bnext\\s+depth\\b"],
+      "predicates": [
+        {
+          "name": "next_depth",
+          "argument_permutation": [0, 1],
+          "argument_roles": ["current_depth", "next_depth"],
+          "direct_pddl_instruction": "Emit next_depth(D1,D2) when the input states that the next depth after D1 is D2."
+        }
+      ]
+    }
+  }
+}
